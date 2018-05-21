@@ -10,6 +10,9 @@ class Endereco(models.Model):
     lote = models.CharField(max_length=45, blank=False, null=False)
     complemento = models.CharField(max_length=45, blank=False, null=False)
 
+    def __str__(self):
+        return self.quadra + ' ' + self.alameda + ' ' + self.lote + ' ' + self.complemento
+
 class Mercado(models.Model):
     idMercado = models.AutoField(primary_key=True)
     nomeMercado = models.CharField(max_length=45, blank=False, null=False)
@@ -17,11 +20,17 @@ class Mercado(models.Model):
     telefoneMercado = models.CharField(max_length=45, blank=False, null=False)
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nomeMercado
+
 class Cliente(models.Model):
     idCliente = models.AutoField(primary_key=True)
     nomeCliente = models.CharField(max_length=45, blank=False, null=False)
     emailCliente = models.CharField(max_length=100, blank=False, null=False)
     telefoneCliente = models.CharField(max_length=45, blank=False, null=False)
+
+    def  __str__(self):
+        return self.nomeCliente
 
 class Drone(models.Model):
     STATUS_CHOICES=(
@@ -34,15 +43,24 @@ class Drone(models.Model):
     status = models.CharField(max_length=45, blank=False, null=False, choices=STATUS_CHOICES)
     capacidadeCarga = models.FloatField(max_length=100, blank=False, null=False)
 
+    def __str__(self):
+        return self.idDrone
+
 class Tracking(models.Model):
     idTracking = models.AutoField(primary_key=True)
     localizacao = models.CharField(max_length=100, blank=False, null=False)
     descricao = models.CharField(max_length=100, blank=False, null=False)
     drone = models.ForeignKey(Drone, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.localizacao
+
 class Categoria(models.Model):
     idCategoria = models.AutoField(primary_key=True)
     nomeCategoria = models.CharField(max_length=45, blank=False, null=False)
+
+    def __str__(self):
+        return self.nomeCategoria
 
 class Produto(models.Model):
     idProduto = models.AutoField(primary_key=True)
@@ -50,6 +68,9 @@ class Produto(models.Model):
     precoProduto = models.FloatField(max_length=100, blank=False, null=False)
     qtdProduto = models.IntegerField(blank=False, null=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nomeProduto + ' ' + self.qtdProduto
 
 class Pedido(models.Model):
     idPedido = models.AutoField(primary_key=True)
@@ -60,6 +81,9 @@ class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     tracking = models.ForeignKey(Tracking, on_delete=models.CASCADE)
     produtos = models.ManyToManyField(Produto)
+
+    def __str__(self):
+        return self.idPedido
 
 class FormaPagamento(models.Model):
     PARCELAS_CHOICES = (

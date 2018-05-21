@@ -43,7 +43,7 @@ def SalvarDrone(request):
     carga = request.POST.get('carga')
 
     if status:
-        drone = Drone
+        drone = Drone()
         drone.status = status
         drone.capacidadeCarga = carga
         drone.save()
@@ -51,5 +51,5 @@ def SalvarDrone(request):
 
 def visualizarDrone(request):
     drone = Drone.objects.all()
+    return render(request,'cadastroDrone.html', context={'drones':drone})
 
-    return
