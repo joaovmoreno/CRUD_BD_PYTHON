@@ -61,6 +61,22 @@ def visualizarDrone(request):
     return render(request,'visualizarDrone.html', context={'drones':drone})
 
 
-def UpdateDrone(request):
+def UpdateDrone(request,pk):
+    drone = Drone()
+
+    status = request.POST.get('status')
+    carga = request.POST.get('craga')
+
+    drone.status = status
+    drone.capacidadeCarga = carga
+
+
+
+
     return render(request, 'AtualizarDrones.html', context=None)
+
+def DeleteDrone(request,pk):
+    drone = Drone.objects.filter(idDrone=pk).delete()
+    drone.save()
+
 

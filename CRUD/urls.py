@@ -24,5 +24,6 @@ urlpatterns = [
     path('cadastroDrone/',CadastroDrone),
     path('cadastroDrone/salvarDrone/',SalvarDrone),
     path('visualizarDrone/',visualizarDrone),
-    path('updateDrone/',UpdateDrone)
+    path('updateDrone/',UpdateDrone, name = 'update'),
+
 ]
