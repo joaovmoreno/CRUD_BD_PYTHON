@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
+
 from .models import *
+
 
 # Create your views here.
 
@@ -42,14 +46,21 @@ def SalvarDrone(request):
     status = request.POST.get('status')
     carga = request.POST.get('carga')
 
-    if status:
+    if status and carga:
         drone = Drone()
         drone.status = status
         drone.capacidadeCarga = carga
         drone.save()
-        return showbase()
+        return redirect('/base/')
+    return HttpResponse('<div>'
+                        '<h6>Drone salvo</h6>'
+                        '</div>')
 
 def visualizarDrone(request):
     drone = Drone.objects.all()
-    return render(request,'cadastroDrone.html', context={'drones':drone})
+    return render(request,'visualizarDrone.html', context={'drones':drone})
+
+
+def UpdateDrone(request):
+    return render(request, 'AtualizarDrones.html', context=None)
 

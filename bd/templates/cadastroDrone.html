@@ -13,7 +13,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="" method="POST">
+              <form role="form" action="/cadastroDrone/salvarDrone/" method="POST">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
@@ -35,7 +35,7 @@
                   <h1>{{ drone }}</h1>>
                   {% endfor %}
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="btnsalvar" role="button">Salvar </button>
+                  <button type="submit" class="btn btn-primary" name="btnsalvar" role="button"  >Salvar </button>
                 </div>
               </form>
             </div>

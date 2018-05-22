@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('base/',showbase),
     path('cadastroDrone/',CadastroDrone),
-    path('salvarDrone/',SalvarDrone)
+    path('cadastroDrone/salvarDrone/',SalvarDrone),
+    path('visualizarDrone/',visualizarDrone),
+    path('updateDrone/',UpdateDrone)
 ]

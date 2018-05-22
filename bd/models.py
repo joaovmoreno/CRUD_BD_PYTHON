@@ -34,9 +34,9 @@ class Cliente(models.Model):
 
 class Drone(models.Model):
     STATUS_CHOICES=(
-        ('1','Disponivel'),
-        ('2','Indisponivel'),
-        ('3','em manutenção')
+        ('disponivel','Disponivel'),
+        ('indisponivel','Indisponivel'),
+        ('manutencao','em manutenção')
     )
 
     idDrone = models.AutoField(primary_key=True)
