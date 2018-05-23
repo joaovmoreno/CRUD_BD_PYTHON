@@ -48,8 +48,8 @@
                                         <td>{{ drone.status }} </td>
                                         <td>{{ drone.capacidadeCarga }}</td>
                                             <td>
-                                                <a style="font-size:20px" type="submit" name="btnUpdate" role="button" class="button" href="/updateDrone/">{% icon 'edit' title="Atualizar"%}</a>
-                                                <a style="font-size:20px" type="submit" name="btnDelete" role="button" class="button" href="/deleteDrone/">{% icon 'trash' title="Excluir" %}</a>
+                                                <a style="font-size:20px" type="submit" name="btnUpdate" role="button" class="button" href="/updateDrone/{{ drone.idDrone }}/">{% icon 'edit' title="Atualizar"%}</a>
+                                                <a style="font-size:20px" type="submit" name="btnDelete" role="button" class="button" href="/visualizarDrone/{{ drone.idDrone }}/">{% icon 'trash' title="Excluir" %}</a>
                                             </td>
 
 

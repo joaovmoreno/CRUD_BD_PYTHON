@@ -21,9 +21,10 @@ from bd.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('base/',showbase),
-    path('cadastroDrone/',CadastroDrone),
-    path('cadastroDrone/salvarDrone/',SalvarDrone),
+    path('cadastroDrone/<int:drone_id>/', drone_create),
+    path('updateDrone/<int:drone_id>/', drone_update),
+    path('deleteDrone/<int:drone_id>/',drone_delete),
     path('visualizarDrone/',visualizarDrone),
-    path('updateDrone/',UpdateDrone, name = 'update'),
+
 
 ]
