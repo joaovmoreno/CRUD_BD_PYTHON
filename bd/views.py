@@ -147,7 +147,7 @@ def delete_categoria(request, id):
 
     return render(request, 'confirm_delete.html', {'categoria': categoria})
 
-##########################################################################################################
+
 def showbase(request):
     pedidos = Pedido.objects.all()
     produtos = Produto.objects.all()
