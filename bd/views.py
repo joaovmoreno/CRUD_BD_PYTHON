@@ -36,7 +36,7 @@ def delete_drone(request, id):
         drone.delete()
         return redirect('list_products')
 
-    return render(request, 'confirm_delete_drone.html', {'drone': drone})
+    return render(request, 'confirm_delete.html', {'drone': drone})
 ##############################################################################################
 
 def list_mercado(request):
@@ -72,7 +72,7 @@ def delete_mercado(request, id):
         mercado.delete()
         return redirect('list_products')
 
-    return render(request, 'confirm_delete_mercado.html', {'mercado': mercado})
+    return render(request, 'confirm_delete.html', {'mercado': mercado})
 
 ##########################################################################################
 def list_produto(request):
@@ -108,7 +108,7 @@ def delete_produto(request, id):
         produto.delete()
         return redirect('list_produto')
 
-    return render(request, 'confirm_delete_produto.html', {'produto': produto})
+    return render(request, 'confirm_delete.html', {'produto': produto})
 
 ##############################################################################################
 
@@ -145,7 +145,7 @@ def delete_categoria(request, id):
         categoria.delete()
         return redirect('list_products')
 
-    return render(request, 'confirm_delete_produto.html', {'categoria': categoria})
+    return render(request, 'confirm_delete.html', {'categoria': categoria})
 
 ##########################################################################################################
 def showbase(request):
