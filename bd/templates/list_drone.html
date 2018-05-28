@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    {% load  icons %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>tabela de Dados</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/base/">Home</a></li>
+                            <li class="breadcrumb-item active">Tebela de Drones</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Drones</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+
+                            <table id="showDrone" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>id Drone</th>
+                                    <th>status</th>
+                                    <th>Carga suportada</th>
+                                    <th>Ações</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    <tr>
+                                        {% for drones in drone %}
+                                        <td>{{ drones.idDrone }}</td>
+                                        <td>{{ drones.status }} </td>
+                                        <td>{{ drones.capacidadeCarga }}</td>
+                                            <td>
+
+                                                <a style="font-size:20px" type="submit" name="btnDelete" role="button" class="button" href="/deletedrone/{{ drones.idDrone }}/">{% icon 'trash' title="Excluir" %}</a>
+
+                                                <a style="font-size:20px" type="submit" name="btnUpdate" role="button" class=glyphicon glyphicon-trash href="/updatedrone/{{ drones.idDrone }}/">{% icon 'edit' title="Atualizar"%}</a>
+
+                                            </td>
+
+
+                                    </tr>
+                                    </tbody>
+{#                                    </table>#}
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </section>
+                                    </div>
+        {% endfor %}
+{% endblock %}

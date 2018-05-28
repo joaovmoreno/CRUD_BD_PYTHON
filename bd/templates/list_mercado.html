@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/base/">Home</a></li>
-                            <li class="breadcrumb-item active">Tebela de Drones</li>
+                            <li class="breadcrumb-item active">Tebela de Mercados</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Drones</h3>
+                            <h3 class="card-title">Mercado</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -35,21 +35,28 @@
                             <table id="showDrone" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>id Drone</th>
-                                    <th>status</th>
-                                    <th>Carga suportada</th>
+                                    <th>id Mercado</th>
+                                    <th>Nome Mercado</th>
+                                    <th>Email Mercado</th>
+                                    <th>Telefone Mercado</th>
+                                    <th>Endereço Mercado</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
                                     <tbody>
                                     <tr>
-                                        {% for drone in drones %}
-                                        <td>{{ drone.idDrone }}</td>
-                                        <td>{{ drone.status }} </td>
-                                        <td>{{ drone.capacidadeCarga }}</td>
+                                        {% for mercados in mercado%}
+                                        <td>{{ mercados.idMercado }}</td>
+                                        <td>{{ mercados.nomeMercado }} </td>
+                                        <td>{{ mercados.emailMercado }}</td>
+                                        <td>{{ mercados.telefoneMercado }}</td>
+                                        <td>{{ mercados.endereco }}</td>
                                             <td>
-                                                <a style="font-size:20px" type="submit" name="btnUpdate" role="button" class="button" href="/updateDrone/{{ drone.idDrone }}/">{% icon 'edit' title="Atualizar"%}</a>
-                                                <a style="font-size:20px" type="submit" name="btnDelete" role="button" class="button" href="/visualizarDrone/{{ drone.idDrone }}/">{% icon 'trash' title="Excluir" %}</a>
+
+                                                <a style="font-size:20px" type="submit" name="btnDelete" role="button" class="button" href="/deletemercado/{{ mercados.idMercado }}/">{% icon 'trash' title="Excluir" %}</a>
+
+                                                <a style="font-size:20px" type="submit" name="btnUpdate" role="button" class="button" href="/updatemercado/{{ mercados.idMercado }}/">{% icon 'edit' title="Atualizar"%}</a>
+
                                             </td>
 
 
@@ -62,5 +69,5 @@
                                     </div>
                                     </section>
                                     </div>
-                                {% endfor %}
+        {% endfor %}
 {% endblock %}

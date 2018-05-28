@@ -44,7 +44,7 @@ class Drone(models.Model):
     capacidadeCarga = models.FloatField(max_length=100, blank=False, null=False)
 
     def __str__(self):
-        return self.idDrone
+        return str(self.idDrone)
 
 class Tracking(models.Model):
     idTracking = models.AutoField(primary_key=True)

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Mercado</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/newmercado/" method="POST">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                      <label>Nome mercado:</label><br>
+                        {{form.nomeMercado}}
+
+{#                      <select class="form-control select2"  style="width: 100%;" name="status">#}
+{#                          <option selected="selected">Disponivel</option>#}
+{#                          <option>Indisponivel</option>#}
+{#                          <option>Manutenção</option>#}
+{#                      </select>#}
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Email mercado:</label><br>
+                        {{ form.emailMercado }}
+                  </div>
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">Telefone mercado:</label><br>
+                        {{ form.telefoneMercado }}
+                </div>
+                     <div class="form-group">
+                    <label for="exampleInputPassword1">Endereço mercado:</label><br>
+                        {{ form.endereco }}
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" role="button"  >Salvar </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

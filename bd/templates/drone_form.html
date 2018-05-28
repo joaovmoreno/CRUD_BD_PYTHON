@@ -13,29 +13,34 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/cadastroDrone/salvarDrone/" method="POST">
+              <form role="form" action="/newdrone/" method="POST">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
-                      <label>Status Drone</label>
-                      <select class="form-control select2"  style="width: 100%;" name="status">
-                          <option selected="selected">Disponivel</option>
-                          <option>Indisponivel</option>
-                          <option>Manutenção</option>
-                      </select>
+                      <label>Status Drone:</label><br>
+                        {{form.status}}
+
+{#                      <select class="form-control select2"  style="width: 100%;" name="status">#}
+{#                          <option selected="selected">Disponivel</option>#}
+{#                          <option>Indisponivel</option>#}
+{#                          <option>Manutenção</option>#}
+{#                      </select>#}
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Capacidade</label>
-                    <input type="number" class="form-control" id="CapacidadeDrone" placeholder="Capacidade de carga do Drone" name="carga">
+                    <label for="exampleInputPassword1">Capacidade de carga:</label><br>
+                        {{ form.capacidadeCarga }}
                   </div>
 
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="btnsalvar" role="button"  >Salvar </button>
+                  <button type="submit" class="btn btn-primary" role="button"  >Salvar </button>
                 </div>
               </form>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 {% endblock %}

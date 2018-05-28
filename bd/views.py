@@ -1,131 +1,151 @@
-from django.shortcuts import render, redirect,get_object_or_404
-from django.forms import ModelForm
-from django.http import HttpResponse
-
-
+from django.shortcuts import render, redirect
 from .models import *
-
-class DroneForm(ModelForm):
-    class Meta():
-        model = Drone
-        fields = ['status','capacidadeCarga']
+from .forms import *
 
 
-def drone_create(request, template_name='product_form.html'):
+def list_drone(request):
+    drone = Drone.objects.all()
+    return render(request, 'list_drone.html', {'drone': drone})
+
+
+def create_drone(request):
     form = DroneForm(request.POST or None)
+
     if form.is_valid():
         form.save()
-        return redirect('products')
-    return render(request, template_name, {'form': form})
+        return redirect('list_drone')
+
+    return render(request, 'drone_form.html', {'form': form})
 
 
-def drone_update(request, drone_id, template_name='product_form.html'):
-    drone = get_object_or_404(Drone, pk=drone_id)
+def update_drone(request, id):
+    drone = Drone.objects.get(pk=id)
     form = DroneForm(request.POST or None, instance=drone)
+
     if form.is_valid():
         form.save()
-        return redirect('/cadastroDrone/')
-    return render(request, template_name, {'form': form})
+        return redirect('list_drone')
+
+    return render(request, 'drone_form.html', {'form': form, 'drone': drone})
 
 
-def drone_delete(request, drone_id, template_name='product_confirm_delete.html'):
-    drone = get_object_or_404(Drone, pk=drone_id)
+def delete_drone(request, id):
+    drone = Drone.objects.get(pk = id)
+
     if request.method == 'POST':
         drone.delete()
-        return redirect('products')
-    return render(request, template_name, {'object': drone})
+        return redirect('list_products')
 
-############################################################################################################
-class MercadoForm(ModelForm):
-    class Meta():
-        model = Mercado
-        fields = ['nomeMercado','emailMercado','telefoneMercado']
+    return render(request, 'confirm_delete_drone.html', {'drone': drone})
+##############################################################################################
 
-def mercado_create(request, template_name='product_form.html'):
+def list_mercado(request):
+    mercado = Mercado.objects.all()
+    return render(request, 'list_mercado.html', {'mercado': mercado})
+
+
+def create_mercado(request):
     form = MercadoForm(request.POST or None)
+
     if form.is_valid():
         form.save()
-        return redirect('products')
-    return render(request, template_name, {'form': form})
+        return redirect('list_mercado')
+
+    return render(request, 'mercado_form.html', {'form': form})
 
 
-def mercado_update(request, mercado_id , template_name='product_form.html'):
-    mercado = get_object_or_404(Mercado, pk=mercado_id)
-    form = DroneForm(request.POST or None, instance=mercado)
+def update_mercado(request, id):
+    mercado = Mercado.objects.get(pk=id)
+    form = MercadoForm(request.POST or None, instance=mercado)
+
     if form.is_valid():
         form.save()
-        return redirect('/cadastroMercado/')
-    return render(request, template_name, {'form': form})
+        return redirect('list_mercado')
+
+    return render(request, 'mercado_form.html', {'form': form, 'mercado': mercado})
 
 
-def mercado_delete(request, mercado_id, template_name='product_confirm_delete.html'):
-    mercado = get_object_or_404(Drone, pk=mercado_id)
+def delete_mercado(request, id):
+    mercado = Mercado.objects.get(pk = id)
+
     if request.method == 'POST':
         mercado.delete()
-        return redirect('products')
-    return render(request, template_name, {'object': mercado})
+        return redirect('list_products')
 
-###########################################################################################################
-class CategoriaForm(ModelForm):
-    class Meta():
-        model = Categoria
-        fields = ['nomeCategoria']
+    return render(request, 'confirm_delete_mercado.html', {'mercado': mercado})
 
-
-def categoria_create(request, template_name='product_form.html'):
-    form = CategoriaForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('products')
-    return render(request, template_name, {'form': form})
+##########################################################################################
+def list_produto(request):
+    produto = Produto.objects.all()
+    return render(request, 'list_produto.html', {'produto': produto})
 
 
-def categoria_update(request, categoria_id, template_name='product_form.html'):
-    categoria = get_object_or_404(Drone, pk=categoria_id)
-    form = DroneForm(request.POST or None, instance=categoria)
-    if form.is_valid():
-        form.save()
-        return redirect('/cadastroDrone/')
-    return render(request, template_name, {'form': form})
-
-
-def categoria_delete(request, categoria_id, template_name='product_confirm_delete.html'):
-    categoria = get_object_or_404(Drone, pk=categoria_id)
-    if request.method == 'POST':
-        categoria.delete()
-        return redirect('products')
-    return render(request, template_name, {'object': categoria})
-###########################################################################################################
-class ProdutoForm(ModelForm):
-   class Meta():
-       model = Produto
-       fields = ['nomeProduto','precoProduto','qtdProduto','categoria']
-
-def produto_create(request, template_name='product_form.html'):
+def create_produto(request):
     form = ProdutoForm(request.POST or None)
+
     if form.is_valid():
         form.save()
-        return redirect('products')
-    return render(request, template_name, {'form': form})
+        return redirect('list_produto')
+
+    return render(request, 'produto_form.html', {'form': form})
 
 
-def produto_update(request, produto_id, template_name='product_form.html'):
-    produto = get_object_or_404(Drone, pk=produto_id)
-    form = DroneForm(request.POST or None, instance=produto)
+def update_produto(request, id):
+    produto = Produto.objects.get(pk=id)
+    form = ProdutoForm(request.POST or None, instance=produto)
+
     if form.is_valid():
         form.save()
-        return redirect('/cadastroDrone/')
-    return render(request, template_name, {'form': form})
+        return redirect('list_produto')
+
+    return render(request, 'produto_form.html', {'form': form, 'produto': produto})
 
 
-def produto_delete(request, produto_id, template_name='product_confirm_delete.html'):
-    produto = get_object_or_404(Drone, pk=produto_id)
+def delete_produto(request, id):
+    produto = Produto.objects.get(pk = id)
+
     if request.method == 'POST':
         produto.delete()
-        return redirect('products')
-    return render(request, template_name, {'object': produto})
+        return redirect('list_produto')
 
-# Create your views here.
+    return render(request, 'confirm_delete_produto.html', {'produto': produto})
+
+##############################################################################################
+
+def list_categoria(request):
+    categoria = Categoria.objects.all()
+    return render(request, 'list_categoria.html', {'categoria': categoria})
+
+
+def create_categoria(request):
+    form = CategoriaForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('list_categoria')
+
+    return render(request, 'categoria_form.html', {'form': form})
+
+
+def update_categoria(request, id):
+    categoria = Categoria.objects.get(pk=id)
+    form = CategoriaForm(request.POST or None, instance=categoria)
+
+    if form.is_valid():
+        form.save()
+        return redirect('list_categoria')
+
+    return render(request, 'categoria_form.html', {'form': form, 'categoria': categoria})
+
+
+def delete_categoria(request, id):
+    categoria = Categoria.objects.get(pk = id)
+
+    if request.method == 'POST':
+        categoria.delete()
+        return redirect('list_products')
+
+    return render(request, 'confirm_delete_produto.html', {'categoria': categoria})
 
 ##########################################################################################################
 def showbase(request):
@@ -159,54 +179,4 @@ def showbase(request):
                                                'qtdPedidos':countPedidos,
                                                'qtdProdutos':countProdutos,
                                                'qtdMercado':countMercado})
-#################################
-        #CRUD DRONE
-#################################
-# def CadastroDrone(request):
-#     return render(request, 'cadastroDrone.html', context=None)
-#
-# def SalvarDrone(request):
-#     status = request.POST.get('status')
-#     carga = request.POST.get('carga')
-#
-#     if status and carga:
-#         drone = Drone()
-#         drone.status = status
-#         drone.capacidadeCarga = carga
-#         drone.save()
-#         return redirect('/base/')
-#     return HttpResponse('<div>'
-#                         '<h6>Drone salvo</h6>'
-#                         '</div>')
-#
-def visualizarDrone(request):
-    drone = Drone.objects.all()
-    return render(request,'visualizarDrone.html', context={'drones':drone})
-
-# def UpdateDrone(request,id_drone):
-#     drone = Drone.objects.get(pk = id_drone)
-#
-#     drone.status = request.POST.get('status')
-#     drone.capacidadeCarga = request.POST.get('carga')
-#
-#     drone._
-#
-#     return render(request, 'AtualizarDrones.html', context={'drones': drone})
-#
-#
-# def DeleteDrone(request,id_drone):
-#     drone = Drone.objects.get(pk=id_drone)
-#
-#     if request.POST.get('btnDelete'):
-#         HttpResponse('<h1>Certeza?</h1>'
-#                      '<btn type="subimit" name="sim">Sim</button><button type="subimit" name="nao">Nao</button>')
-#         if request.POST.get('Sim'):
-#             drone.delete()
-#         else:
-#             return render(request, 'visualizarDrone.html', context={'drones': drone})
-#
-#
-#     return render(request,'visualizarDrone.html', context={'drones':drone})
-#
-
 
